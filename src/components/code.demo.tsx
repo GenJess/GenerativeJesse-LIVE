@@ -2,9 +2,22 @@
 'use client'
 
 import { SplineScene } from "@/components/ui/splite";
-import { Card } from "@/components/ui/card"
-import { Spotlight } from "@/components/ui/spotlight"
- 
+import { Card } from "@/components/ui/card";
+import { Spotlight } from "@/components/ui/spotlight";
+import { Home, User, Briefcase, FileText } from 'lucide-react';
+import { NavBar } from "@/components/ui/tubelight-navbar";
+
+export function NavBarDemo() {
+  const navItems = [
+    { name: 'Home', url: '/', icon: Home },
+    { name: 'About', url: '/about', icon: User },
+    { name: 'Projects', url: '/projects', icon: Briefcase },
+    { name: 'Resume', url: '/resume', icon: FileText }
+  ]
+
+  return <NavBar items={navItems} />;
+}
+
 export function SplineSceneBasic() {
   return (
     <Card className="w-full h-[500px] bg-black/[0.96] relative overflow-hidden">
