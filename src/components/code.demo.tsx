@@ -7,6 +7,7 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { Home, User, Briefcase, FileText } from 'lucide-react';
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { TextScramble } from "@/components/ui/text-scramble";
+import { useState } from "react";
 
 export function NavBarDemo() {
   const navItems = [
@@ -20,6 +21,15 @@ export function NavBarDemo() {
 }
 
 export function SplineSceneBasic() {
+  const titles = ["Developer", "Analyst", "Creator"];
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [trigger, setTrigger] = useState(false);
+
+  const handleHover = () => {
+    setTrigger(true);
+    setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+  };
+
   return (
     <Card className="w-full h-[500px] bg-black/[0.96] relative overflow-hidden">
       <Spotlight
@@ -31,11 +41,14 @@ export function SplineSceneBasic() {
         <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
           <TextScramble
             as="h1"
-            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400"
+            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 cursor-pointer"
             speed={0.02}
             duration={1.2}
+            trigger={trigger}
+            onScrambleComplete={() => setTrigger(false)}
+            onHoverStart={handleHover}
           >
-            Interactive 3D
+            {titles[currentTitleIndex]}
           </TextScramble>
           <TextScramble
             className="mt-4 text-neutral-300 max-w-lg"
