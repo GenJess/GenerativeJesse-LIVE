@@ -31,7 +31,7 @@ export function SplineSceneBasic() {
   };
 
   return (
-    <Card className="w-full h-[500px] bg-black/[0.96] relative overflow-hidden">
+    <Card className="w-full h-screen bg-black/[0.96] relative overflow-hidden border-0 rounded-none">
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
       />
