@@ -1,75 +1,63 @@
-
 'use client'
 
 import { SplineScene } from "@/components/ui/splite";
 import { Card } from "@/components/ui/card";
-import { Spotlight } from "@/components/ui/spotlight";
-import { Home, User, Briefcase, FileText } from 'lucide-react';
+import { Home, User, Briefcase, FileText, Clock } from 'lucide-react';
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { TextScramble } from "@/components/ui/text-scramble";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { renderCanvas } from "./ui/canvas-cursor";
+import { YourSplineComponent } from './your-spline-export';
+import { motion } from "framer-motion";
 
 export function NavBarDemo() {
   const navItems = [
     { name: 'Home', url: '/', icon: Home },
     { name: 'About', url: '/about', icon: User },
     { name: 'Projects', url: '/projects', icon: Briefcase },
-    { name: 'Resume', url: '/resume', icon: FileText }
+    { name: 'Creations', url: '/creations', icon: FileText },
+    { name: 'History', url: '/history', icon: Clock }
   ]
 
   return <NavBar items={navItems} />;
 }
 
 export function SplineSceneBasic() {
-  const titles = ["Developer", "Analyst", "Creator"];
-  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-  const [trigger, setTrigger] = useState(false);
-
-  const handleHover = () => {
-    setTrigger(true);
-    setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
-  };
+  useEffect(() => {
+    renderCanvas();
+  }, []);
 
   return (
-    <Card className="w-full h-screen bg-black/[0.96] relative overflow-hidden border-0 rounded-none">
-      <Spotlight
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        size={500}
+    <Card className="w-full h-screen bg-black relative overflow-hidden border-0 rounded-none">
+      {/* Background Robot */}
+      <SplineScene 
+        scene="https://prod.spline.design/A6r9GOTlwGdONZl7/scene.splinecode"
+        className="absolute inset-0 w-full h-full z-10"
       />
       
-      <div className="flex h-full">
-        {/* Left content */}
-        <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
-          <TextScramble
-            as="h1"
-            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 cursor-pointer"
-            speed={0.02}
-            duration={1.2}
-            trigger={trigger}
-            onScrambleComplete={() => setTrigger(false)}
-            onHoverStart={handleHover}
-          >
-            {titles[currentTitleIndex]}
-          </TextScramble>
-          <TextScramble
-            className="mt-4 text-neutral-300 max-w-lg"
-            speed={0.01}
-            duration={1.5}
-            characterSet=". "
-          >
-            Bring your UI to life with beautiful 3D scenes. Create immersive experiences 
-            that capture attention and enhance your design.
-          </TextScramble>
-        </div>
+      {/* Cursor trails */}
+      <canvas
+        id="canvas"
+        className="absolute inset-0 pointer-events-none z-20"
+      />
 
-        {/* Right content */}
-        <div className="flex-1 relative">
-          <SplineScene 
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-          />
-        </div>
-      </div>
+      {/* Foreground JESSE text with fade animation */}
+      <motion.div
+        className="absolute inset-0 z-30"
+        animate={{
+          opacity: [0.3, 0.7, 0.3]
+        }}
+        transition={{
+          duration: 4,
+          ease: "easeInOut",
+          repeat: Infinity,
+        }}
+      >
+        <SplineScene 
+          scene="https://prod.spline.design/kFeQovtLf7EeINUd/scene.splinecode"
+          className="w-full h-full"
+        />
+      </motion.div>
     </Card>
-  )
+  );
 }

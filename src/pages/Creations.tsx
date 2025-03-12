@@ -1,7 +1,7 @@
 import { ShineBorder } from "@/components/ui/shine-border";
 import { NavBarDemo } from "@/components/code.demo";
 
-const Projects = () => {
+const Creations = () => {
   return (
     <>
       <NavBarDemo />
@@ -10,11 +10,11 @@ const Projects = () => {
           className="text-center text-2xl font-bold text-neutral-800"
           color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
         >
-          Projects Page
+          Creations Page
         </ShineBorder>
       </div>
     </>
   );
 };
 
-export default Projects;
+export default Creations;

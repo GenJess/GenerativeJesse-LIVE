@@ -13,7 +13,7 @@ type SpotlightProps = {
 export function Spotlight({
   className,
   size = 200,
-  springOptions = { bounce: 0 },
+  springOptions = { bounce: 0, stiffness: 50, damping: 10 },
 }: SpotlightProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -66,11 +66,11 @@ export function Spotlight({
     <motion.div
       ref={containerRef}
       className={cn(
-        'pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops),transparent_80%)] blur-xl transition-opacity duration-200',
-        'from-zinc-50 via-zinc-100 to-zinc-200',
-        isHovered ? 'opacity-100' : 'opacity-0',
-        className
-      )}
+              'pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops),transparent_80%)] blur-xl transition-opacity duration-200',
+              'from-white via-white to-white',
+              isHovered ? 'opacity-100' : 'opacity-0',
+              className
+            )}
       style={{
         width: size,
         height: size,
