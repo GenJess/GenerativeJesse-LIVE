@@ -65,9 +65,202 @@ This project is built with .
 Simply open [Lovable](https://lovable.dev/projects/c3fb30ff-6c2f-496b-956a-120c2b5449ec) and click on Share -> Publish.
 
 
-![Screenshot 2025-03-03 at 7 21 48 PM](https://github.com/user-attachments/assets/3cdebe37-69ef-4cbe-807d-1a2b28339859)
+The landing page features a navigation bar at the top (or bottom on smaller screens) with links to "Home", "About", "Projects", "Creations", and "History". The main content area displays a 3D robot scene against a black background. The text "JESSE" is overlaid on the scene with a subtle fade animation.
+# Welcome to your Lovable project
 
+## Project info
 
-## I want to use a custom domain - is that possible?
+**URL**: https://lovable.dev/projects/c3fb30ff-6c2f-496b-956a-120c2b5449ec
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## How can I edit this code?
+
+There are several ways of editing your application.
+
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/c3fb30ff-6c2f-496b-956a-120c2b5449ec) and start prompting.
+
+Changes made via Lovable will be committed automatically to this repo.
+
+**Use your preferred IDE**
+
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
+
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+# Personal Robot Portfolio
+
+A modern, visually-rich web portfolio featuring a 3D robot landing page, interactive navigation, and a crypto dashboard. Built with Vite, React, TypeScript, shadcn-ui, and Tailwind CSS.
+
+---
+
+## 📂 Folder Structure
+
+```
+├── public/
+│   ├── favicon.ico
+│   ├── og-image.png        # Open Graph/social preview image (see screenshot below)
+│   └── placeholder.svg
+├── src/
+│   ├── App.tsx             # Main React app entry
+│   ├── main.tsx            # Vite entry point
+│   ├── index.css           # Global styles
+│   ├── components/         # UI & custom components (NavBar, SplineScene, etc)
+│   ├── pages/              # Page-level components (index.tsx, About.tsx, etc)
+│   ├── hooks/              # Custom React hooks
+│   ├── lib/                # Utility libraries
+│   └── context/            # React context providers
+├── package.json            # Project dependencies & scripts
+├── tailwind.config.ts      # Tailwind CSS configuration
+├── vite.config.ts          # Vite config
+└── README.md
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone the repository
+```sh
+git clone https://github.com/GenJess/GenerativeJesse.git
+cd "Personal Port w Robot"
+```
+
+### 2. Install dependencies
+```sh
+npm install
+# or
+yarn install
+```
+
+### 3. Run the development server
+```sh
+npm run dev
+# or
+yarn dev
+```
+- Open [http://localhost:5173](http://localhost:5173) to view the app in your browser.
+
+### 4. Build for production
+```sh
+npm run build
+```
+
+---
+
+## 🖼️ Landing Page Preview
+
+![Landing Page Screenshot](public/og-image.png)
+
+---
+
+## ✨ Features
+- **3D Robot Landing Page**: Interactive Spline-based 3D scene
+- **Modern Navigation**: Responsive NavBar with Home, About, Projects, Creations, History
+- **Crypto Dashboard**: (Accessible via navigation)
+- **Beautiful Animations**: Subtle fades, motion effects
+- **Mobile Responsive**: Looks great on all devices
+
+---
+
+## 🛠️ Built With
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+## 📄 License
+MIT
+
+---
+
+## 📂 Folder Structure
+
+```
+├── public/
+│   ├── favicon.ico
+│   ├── og-image.png        # Open Graph/social preview image
+│   └── placeholder.svg
+├── src/
+│   ├── App.tsx             # Main React app entry
+│   ├── main.tsx            # Vite entry point
+│   ├── index.css           # Global styles
+│   ├── components/         # UI & custom components (NavBar, SplineScene, etc)
+│   ├── pages/              # Page-level components (index.tsx, About.tsx, etc)
+│   ├── hooks/              # Custom React hooks
+│   ├── lib/                # Utility libraries
+│   └── context/            # React context providers
+├── package.json            # Project dependencies & scripts
+├── tailwind.config.ts      # Tailwind CSS configuration
+├── vite.config.ts          # Vite config
+└── README.md
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone the repository
+```sh
+git clone <your-repo-url>
+cd <project-folder>
+```
+
+### 2. Install dependencies
+```sh
+npm install
+# or
+yarn install
+```
+
+### 3. Run the development server
+```sh
+npm run dev
+# or
+yarn dev
+```
+- Open [http://localhost:5173](http://localhost:5173) to view the app in your browser.
+
+### 4. Build for production
+```sh
+npm run build
+```
+
+---
+
+## 🖼️ Landing Page Preview
+
+![Landing Page Screenshot](public/og-image.png)
+
+---
+
+## ✨ Features
+- **3D Robot Landing Page**: Interactive Spline-based 3D scene
+- **Modern Navigation**: Responsive NavBar with Home, About, Projects, Creations, History
+- **Crypto Dashboard**: (Accessible via navigation)
+- **Beautiful Animations**: Subtle fades, motion effects
+- **Mobile Responsive**: Looks great on all devices
+
+---
+
+## 🛠️ Built With
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+## 📄 License
+MIT
