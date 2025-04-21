@@ -1,9 +1,9 @@
 # Project Overview
 
-## Project Title: Personal Portfolio with Robot
+## Project Title: Personal Portfolio
 
 ## Project Goal:
-To create a personal portfolio website showcasing skills, projects, and experience, enhanced with a robot assistant.
+To create a personal portfolio website showcasing skills, projects, and experience, enhanced with a portfolio assistant.
 
 ## Technologies Used:
 - React
@@ -30,4 +30,4 @@ To create a personal portfolio website showcasing skills, projects, and experien
 - `memory-bank/`: Project documentation and context.
 
 ## Description:
-This project is a personal portfolio website built with React, TypeScript, and other modern web technologies. It showcases skills, projects, and experience, and includes a robot assistant to engage visitors.
+This project is a personal portfolio website built with React, TypeScript, and other modern web technologies. It showcases skills, projects, and experience, and includes a portfolio assistant to engage visitors.

@@ -1,17 +1,12 @@
-import { ShineBorder } from "@/components/ui/shine-border";
 import { NavBarDemo } from "@/components/code.demo";
+import { FeaturesSectionWithHoverEffects } from "@/components/blocks/feature-section-with-hover-effects";
 
 const Projects = () => {
   return (
     <>
       <NavBarDemo />
-      <div className="min-h-screen w-full flex items-center justify-center bg-white">
-        <ShineBorder
-          className="text-center text-2xl font-bold text-neutral-800"
-          color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-        >
-          Projects Page
-        </ShineBorder>
+      <div className="min-h-screen w-full bg-white dark:bg-black">
+        <FeaturesSectionWithHoverEffects />
       </div>
     </>
   );
