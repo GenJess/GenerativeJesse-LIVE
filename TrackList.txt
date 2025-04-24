@@ -1,0 +1,58 @@
+# Product Requirements Document: TrackList
+
+## 1. Introduction
+
+### 1.1. Purpose
+This document outlines the requirements for TrackList, a web application that allows users to create a cryptocurrency watchlist and track the rate of change of selected coins.
+
+### 1.2. Goals
+*   Provide users with a tool to monitor cryptocurrency price movements in real-time.
+*   Enable users to compare the performance of different cryptocurrencies over custom time intervals.
+*   Offer a visually appealing and user-friendly interface for managing and analyzing cryptocurrency watchlists.
+
+## 2. High-Level Summary
+
+TrackList is a web-based financial tool that empowers users to monitor and compare the performance of various cryptocurrencies. Users can create personalized watchlists, add cryptocurrencies, specify a start time, and calculate the rate of change for each coin. The watchlist will then be sorted based on which coins are moving the fastest, providing users with a quick overview of market trends.
+
+## 3. Features
+
+### 3.1. Watchlist Creation and Management
+*   Users can create multiple watchlists with custom names.
+*   Users can add or remove cryptocurrencies from their watchlists.
+*   Users can search for cryptocurrencies by symbol or name.
+
+### 3.2. Real-Time Price Tracking
+*   The application displays real-time price data for each cryptocurrency in the watchlist.
+*   Price data is sourced from Pyth Network's Hermes API.
+*   The application updates prices automatically without requiring manual refresh.
+
+### 3.3. Rate of Change Calculation
+*   Users can specify a start time for each cryptocurrency in the watchlist.
+*   The application calculates the rate of change for each cryptocurrency based on the current price and the price at the specified start time.
+*   The rate of change is displayed as a percentage per minute.
+
+### 3.4. Watchlist Sorting
+*   The watchlist can be sorted based on the rate of change, allowing users to quickly identify the fastest-moving coins.
+*   Users can choose to sort the watchlist in ascending or descending order.
+
+### 3.5. User Interface
+*   The application features a visually appealing and user-friendly interface.
+*   The interface is responsive and works across different devices.
+*   The application provides clear and concise data visualizations.
+
+## 4. Capabilities
+
+### 4.1. Data Acquisition
+*   The application can fetch real-time price data from Pyth Network's Hermes API.
+*   The application can retrieve historical price data from Pyth Network's Benchmarks (optional).
+
+### 4.2. Data Processing
+*   The application can calculate the rate of change for each cryptocurrency based on the current price and the price at the specified start time.
+*   The application can sort the watchlist based on the calculated rate of change.
+
+### 4.3. Data Storage
+*   The application can store user watchlists, cryptocurrency selections, and start times in a local storage or database.
+
+### 4.4. User Interface
+*   The application can display real-time price data, rate of change, and other relevant information in a clear and concise manner.
+*   The application can provide a user-friendly interface for managing watchlists and customizing settings.

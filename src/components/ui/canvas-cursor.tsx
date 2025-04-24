@@ -93,8 +93,8 @@ export class NoiseGenerator {
   const CONFIG = {
     debug: true,
     friction: 0.5,
-    trails: 60, // Reduced number of trails
-    size: 40, // Shorter trail length
+    trails: 60, // Restored original number of trails
+    size: 40, // Restored original trail length
     dampening: 0.025,
     tension: 0.99,
   };
@@ -159,7 +159,40 @@ export class NoiseGenerator {
     requestAnimationFrame(render);
   }
   
-  export function renderCanvas() {
+  import React, { useEffect } from "react";
+
+export const CanvasCursor: React.FC = () => {
+  useEffect(() => {
+    renderCanvas();
+    return () => {
+      // Remove listeners and stop animation if needed
+      isRunning = false;
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('touchstart', onMouseMove);
+      document.body.removeEventListener('orientationchange', resizeCanvas);
+      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('focus', () => {});
+      window.removeEventListener('blur', () => {});
+      document.removeEventListener('visibilitychange', () => {});
+    };
+  }, []);
+  return (
+    <canvas
+      id="canvas"
+      style={{
+        width: '100vw',
+        height: '100vh',
+        position: 'absolute',
+        inset: 0,
+        zIndex: 2000,
+        pointerEvents: 'none',
+        display: 'block',
+      }}
+    />
+  );
+};
+
+export function renderCanvas() {
     canvas = document.getElementById('canvas') as HTMLCanvasElement;
     if (!canvas) return;
   
@@ -188,6 +221,15 @@ export class NoiseGenerator {
   
     window.addEventListener('blur', () => {
       isRunning = false;
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        isRunning = false;
+      } else if (document.visibilityState === 'visible' && !isRunning) {
+        isRunning = true;
+        render();
+      }
     });
   
     initLines();

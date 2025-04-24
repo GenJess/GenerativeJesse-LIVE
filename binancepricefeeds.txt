@@ -1,0 +1,145 @@
+Binance API Integration Information:
+
+Base Endpoint:
+  - wss://ws-fapi.binance.com/ws-fapi/v1 (real trading)
+  - wss://testnet.binancefuture.com/ws-fapi/v1 (testing)
+
+General Information:
+  - Single connection valid for 24 hours.
+  - Server sends ping every 3 minutes, respond with pong.
+  - Timestamps are in milliseconds in UTC.
+  - INT parameters should be JSON integers, DECIMAL parameters should be JSON strings.
+
+Price Streams:
+  - Mark Price Stream: Mark price and funding rate for a single symbol.
+    - Stream Name: <symbol>@markPrice or <symbol>@markPrice@1s
+    - Update Speed: 3000ms or 1000ms
+    - Example Response:
+      {
+        "e": "markPriceUpdate",  // Event type
+        "E": 1562305380000,      // Event time
+        "s": "BTCUSDT",          // Symbol
+        "p": "11794.15000000",   // Mark price
+        "i": "11784.62659091",    // Index price
+        "P": "11784.25641265",    // Estimated Settle Price
+        "r": "0.00038167",       // Funding rate
+        "T": 1562306400000       // Next funding time
+      }
+  - All Market Tickers Streams: 24hr rolling window ticker statistics for all symbols.
+    - Stream Name: !ticker@arr
+    - Update Speed: 1000ms
+    - Example Response:
+      [
+        {
+          "e": "24hrTicker",  // Event type
+          "E": 123456789,     // Event time
+          "s": "BTCUSDT",     // Symbol
+          "p": "0.0015",      // Price change
+          "P": "250.00",      // Price change percent
+          "w": "0.0018",      // Weighted average price
+          "c": "0.0025",      // Last price
+          "Q": "10",          // Last quantity
+          "o": "0.0010",      // Open price
+          "h": "0.0025",      // High price
+          "l": "0.0010",      // Low price
+          "v": "10000",       // Total traded base asset volume
+          "q": "18",          // Total traded quote asset volume
+          "O": 0,             // Statistics open time
+          "C": 86400000,      // Statistics close time
+          "F": 0,             // First trade ID
+          "L": 18150,         // Last trade Id
+          "n": 18151          // Total number of trades
+        }
+      ]
+
+Chainlink Price Feeds:
+
+  - Decentralized data feeds provided through smart contracts on various blockchains.
+  - Requires interacting with a blockchain and deploying a smart contract.
+  - Provides transparency and security.
+  - Code examples available in Solidity, Vyper, Javascript, Python, and Golang.
+  - To use Chainlink, you need:
+    - RPC endpoint URL
+    - LINK token contract address
+    - Feed contract address
+  - Example (Javascript):
+    ```javascript
+    const { ethers } = require("ethers") // for nodejs only
+    const provider = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/eth_sepolia")
+    const aggregatorV3InterfaceABI = [...] // ABI definition
+    const addr = "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43" // Contract address
+    const priceFeed = new ethers.Contract(addr, aggregatorV3InterfaceABI, provider)
+    priceFeed.latestRoundData().then((roundData) => {
+      // Do something with roundData
+      console.log("Latest Round Data", roundData)
+    })
+    ```
+
+Pyth Network Price Feeds:
+
+  - Real-time financial market data delivered to smart contract applications on 100+ blockchains.
+  - Data is contributed by 120+ first-party publishers.
+  - Offers over 1300+ price feeds.
+  - Can be used in off-chain applications.
+  - To access Pyth price feeds off-chain, use the Hermes API.
+  - Hermes provides three methods for fetching price updates:
+    - REST API: Fetch the latest price update for one or more feeds.
+    - Streaming: Continuously stream price updates for the requested feeds using Server-Sent Events (SSE).
+    - SDK: Use the TypeScript SDK for Hermes to fetch price updates.
+  - Example (Streaming):
+    ```bash
+    curl -N 'https://hermes.pyth.network/v2/updates/price/stream?ids[]=0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43'
+    ```
+  - To use Pyth, you need:
+    - Hermes endpoint URL (https://hermes.pyth.network)
+    - Price feed IDs (https://pyth.network/developers/price-feed-ids)
+
+Pyth Network - Implementing Watchlist Features:
+
+  - To implement the watchlist features, you can use the Hermes API and the TypeScript SDK.
+  - Here's how you can fetch price updates and subscribe to real-time price streams using the Hermes API and the TypeScript SDK:
+
+  - TypeScript SDK:
+    ```typescript
+    import { HermesClient } from '@pythnetwork/pyth-crosschain/tree/main/apps/hermes/client/js/src/HermesClient';
+
+    const connection = new HermesClient("https://hermes.pyth.network", {});
+
+    const priceIds = [
+      // You can find the ids of prices at https://pyth.network/developers/price-feed-ids
+      "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43", // BTC/USD price id
+      "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace", // ETH/USD price id
+    ];
+
+    // Get price feeds
+    const priceFeeds = await connection.getPriceFeeds("btc", "crypto");
+    console.log(priceFeeds);
+
+    // Latest price updates
+    const priceUpdates = await connection.getLatestPriceUpdates(priceIds);
+    console.log(priceUpdates);
+
+    // Streaming price updates
+    const eventSource = await connection.getStreamingPriceUpdates(priceIds);
+
+    eventSource.onmessage = (event) => {
+      console.log("Received price update:", event.data);
+    };
+
+    eventSource.onerror = (error) => {
+      console.error("Error receiving updates:", error);
+      eventSource.close();
+    };
+
+    await sleep(5000);
+
+    // To stop listening to the updates, you can call eventSource.close();
+    console.log("Closing event source.");
+    eventSource.close();
+    ```
+
+  - Implementing Watchlist Features:
+    - To show the moment a coin is added, store the initial price and timestamp when the user adds a coin to their watchlist.
+    - To allow users to specify a start time, provide a UI element (e.g., a date/time picker) that allows the user to select a start time.
+    - To calculate the rate of change, compare the current price to the price at the specified start time using the following formula: `(currentPrice - initialPrice) / initialPrice / (currentTime - initialTime)`.
+    - To sort the watchlist, sort the list of coins based on the calculated rate of change.
