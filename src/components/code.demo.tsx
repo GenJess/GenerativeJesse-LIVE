@@ -6,7 +6,7 @@ import { Home, User, Briefcase, FileText, Clock } from 'lucide-react';
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { TextScramble } from "@/components/ui/text-scramble";
 import { useState, useEffect } from "react";
-import { renderCanvas } from "./ui/canvas-cursor";
+
 import { YourSplineComponent } from './your-spline-export';
 import { motion } from "framer-motion";
 
@@ -24,7 +24,7 @@ export function NavBarDemo() {
 
 export function SplineSceneBasic() {
   useEffect(() => {
-    renderCanvas();
+    // Removed renderCanvas call (module deleted)
   }, []);
 
   return (
