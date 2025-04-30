@@ -1,0 +1,20 @@
+Recent Changes:
+
+src/pages/Projects.tsx:
+- Added two new project frames (id 10 and 11) to the projectFrames array.
+- Added useRef import.
+- Added NavBarDemo import.
+- Added SplineScene import.
+- Added onSplineLoad function.
+- Added onSplineMouseDown function.
+
+project-overview.md:
+- Updated "Recent changes" section to reflect changes as of 2025-04-29, including:
+  - Removed all gradient overlays from Home, About, and Ocean Intro pages.
+  - Ensured only one robot is visible on the Home page (fixed double robot bug).
+  - Confirmed cropping/zoom logic is consistent and matches final design intent.
+  - Verified Spline logo is hidden by zoom/cropping and asset edit.
+  - Noted that the Home page Spline currently does NOT display the user's name.
+
+README.md:
+- Updated "Last Updated" date to April 30, 2025.
