@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 
 export function NavBarDemo() {
   const navItems = [
-    { name: 'Home', url: '/', icon: Home },
+    { name: 'Home', url: '/home', icon: Home },
     { name: 'About', url: '/about', icon: User },
     { name: 'Projects', url: '/projects', icon: Briefcase },
     { name: 'Creations', url: '/creations', icon: FileText },

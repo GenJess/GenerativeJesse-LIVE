@@ -148,17 +148,17 @@ const projectFrames = [
   },
 ];
 
+import { NavBarDemo } from "@/components/code.demo";
+
 export default function Projects() {
   return (
-    <div className="flex justify-center items-center min-h-screen w-full bg-zinc-900 pt-20 pb-10"> {/* Added padding for navbar and centering */}
-      <div className="w-full max-w-screen-xl h-full"> {/* Added max-width for centering and contained layout */}
-        <DynamicFrameLayout
-          frames={projectFrames}
-          className="w-full h-full"
-          hoverSize={6}
-          gapSize={4}
-        />
+    <>
+      <NavBarDemo />
+      <div className="min-h-screen w-full bg-zinc-900 text-white pt-20 pb-10 flex flex-col items-center">
+        <h1 className="text-4xl font-bold mb-8">Projects</h1>
+        {/* TODO: Add tiles or fallback content here if needed */}
+        <div className="text-neutral-300">Project showcase coming soon.</div>
       </div>
-    </div>
-  )
+    </>
+  );
 }
