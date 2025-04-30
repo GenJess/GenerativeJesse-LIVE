@@ -41,23 +41,7 @@ export function SplineSceneBasic() {
         className="absolute inset-0 pointer-events-none z-20"
       />
 
-      {/* Foreground JESSE text with fade animation */}
-      <motion.div
-        className="absolute inset-0 z-30"
-        animate={{
-          opacity: [0.3, 0.7, 0.3]
-        }}
-        transition={{
-          duration: 4,
-          ease: "easeInOut",
-          repeat: Infinity,
-        }}
-      >
-        <SplineScene 
-          scene="https://prod.spline.design/kFeQovtLf7EeINUd/scene.splinecode"
-          className="w-full h-full"
-        />
-      </motion.div>
+
     </Card>
   );
 }

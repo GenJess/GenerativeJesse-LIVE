@@ -39,7 +39,12 @@ This document explains the structure of your project and the purpose of each fil
 - `index.css` — Global styles.
 - `vite-env.d.ts` — Vite/TypeScript environment types.
 - `components/` — Reusable UI and functional components.
-  - `ui/` — Atomic UI components (button, card, modal, etc).
+  - `ui/` — Atomic UI components (button, card, modal, spotlight, etc).
+    - Includes interactive/animated components using:
+      - `@react-three/fiber` (React renderer for three.js)
+      - `three` (WebGL engine)
+      - `framer-motion` (animation library)
+    - **Note:** Run `npm install @react-three/fiber three framer-motion` after merging or pulling new UI features.
   - Other files — Custom or demo components.
 - `context/` — React context providers for state management.
 - `hooks/` — Custom React hooks.

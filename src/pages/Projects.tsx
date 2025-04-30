@@ -1,77 +1,164 @@
-import { useState, useEffect, useCallback } from "react";
-import { NavBarDemo } from "@/components/code.demo";
-import { FeaturesSectionWithHoverEffects } from "@/components/blocks/feature-section-with-hover-effects";
+"use client"
 
-const STRIPE_SCRIPT_SRC = "https://js.stripe.com/v3/buy-button.js";
-const STRIPE_BUY_BUTTON = (
-  <stripe-buy-button
-    buy-button-id="buy_btn_1RHQqfLm9Jk9yBo1lLwqmomj"
-    publishable-key="pk_live_51MBk7aLm9Jk9yBo19JpJrLv0DtI0Eye5x6HVw3hnbo7colkZC1Ch0SBYXl9QUY5sLsRjoh8yNWFVGrM9QbGA4zdu00D38b1z4E"
-  />
-);
+import { DynamicFrameLayout } from "@/components/ui/dynamic-frame-layout"
 
-const Projects = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+const projectFrames = [
+  {
+    id: 1,
+    title: "AI-Powered Business Enhancement Service",
+    video: "placeholder_video_url_1", // Replace with actual video URL
+    defaultPos: { x: 0, y: 0, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 2,
+    title: "Actionable TikTok Content Tool",
+    video: "placeholder_video_url_2", // Replace with actual video URL
+    defaultPos: { x: 4, y: 0, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 3,
+    title: "LLM-Based Options Contract Filter",
+    video: "placeholder_video_url_3", // Replace with actual video URL
+    defaultPos: { x: 8, y: 0, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 4,
+    title: "Crypto Raffle Timing Predictor",
+    video: "placeholder_video_url_4", // Replace with actual video URL
+    defaultPos: { x: 0, y: 4, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 5,
+    title: "WhatsApp Chat Analyzer",
+    video: "placeholder_video_url_5", // Replace with actual video URL
+    defaultPos: { x: 4, y: 4, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 6,
+    title: "Raspberry Pi Vision/Produce Checkout",
+    video: "placeholder_video_url_6", // Replace with actual video URL
+    defaultPos: { x: 8, y: 4, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 7,
+    title: "Drone AI Experiments",
+    video: "placeholder_video_url_7", // Replace with actual video URL
+    defaultPos: { x: 0, y: 8, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 8,
+    title: "PitchLucy Scraping / DeFi AI",
+    video: "placeholder_video_url_8", // Replace with actual video URL
+    defaultPos: { x: 4, y: 8, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 9,
+    title: "Zillow Scraping + 3D Home Tours",
+    video: "placeholder_video_url_9", // Replace with actual video URL
+    defaultPos: { x: 8, y: 8, w: 4, h: 4 },
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+  {
+    id: 10,
+    title: "Vision/Lidar/AR AI Project",
+    video: "placeholder_video_url_10", // Replace with actual video URL
+    defaultPos: { x: 2, y: 12, w: 4, h: 4 }, // Centered left in the last row
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+    {
+    id: 11,
+    title: "Mini Jarvis for Digital Presence",
+    video: "placeholder_video_url_11", // Replace with actual video URL
+    defaultPos: { x: 6, y: 12, w: 4, h: 4 }, // Centered right in the last row
+    corner: "https://www.pngmart.com/image/647566", // Replace with actual image URL
+    edgeHorizontal: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    edgeVertical: "https://static.vecteezy.com/system/resources/previews/025/314/100/original/gold-border-frame-png.png", // Replace with actual image URL
+    mediaSize: 1,
+    borderThickness: 16,
+    borderSize: 100,
+    isHovered: false,
+  },
+];
 
-  // Ensure Stripe script is loaded
-  useEffect(() => {
-    if (drawerOpen && !document.querySelector(`script[src='${STRIPE_SCRIPT_SRC}']`)) {
-      const script = document.createElement("script");
-      script.src = STRIPE_SCRIPT_SRC;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, [drawerOpen]);
-
-  // Close on ESC or click outside
-  useEffect(() => {
-    if (!drawerOpen) return;
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setDrawerOpen(false);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [drawerOpen]);
-
-  const handleBuy = useCallback(() => setDrawerOpen(true), []);
-
+export default function Projects() {
   return (
-    <>
-      <NavBarDemo />
-      <div className="min-h-screen w-full bg-white dark:bg-black pt-10">
-        <FeaturesSectionWithHoverEffects onBuy={handleBuy} />
-        {/* Side Drawer */}
-        {drawerOpen && (
-          <div className="fixed inset-0 z-50 flex">
-            <div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm"
-              onClick={() => setDrawerOpen(false)}
-            />
-            <aside className="relative ml-auto w-full max-w-md bg-white dark:bg-neutral-900 shadow-xl h-full p-8 flex flex-col items-center justify-center animate-slide-in-right">
-              <button
-                className="absolute top-4 right-4 text-2xl text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-100"
-                onClick={() => setDrawerOpen(false)}
-                aria-label="Close"
-              >
-                ×
-              </button>
-              <h2 className="text-2xl font-bold mb-6">Purchase</h2>
-              <div className="w-full flex flex-col items-center">
-                {STRIPE_BUY_BUTTON}
-              </div>
-            </aside>
-          </div>
-        )}
+    <div className="flex justify-center items-center min-h-screen w-full bg-zinc-900 pt-20 pb-10"> {/* Added padding for navbar and centering */}
+      <div className="w-full max-w-screen-xl h-full"> {/* Added max-width for centering and contained layout */}
+        <DynamicFrameLayout
+          frames={projectFrames}
+          className="w-full h-full"
+          hoverSize={6}
+          gapSize={4}
+        />
       </div>
-      <style>{`
-        @keyframes slide-in-right {
-          from { transform: translateX(100%); }
-          to { transform: translateX(0); }
-        }
-        .animate-slide-in-right { animation: slide-in-right 0.25s cubic-bezier(.4,0,.2,1) both; }
-      `}</style>
-    </>
-  );
-};
-
-export default Projects;
+    </div>
+  )
+}

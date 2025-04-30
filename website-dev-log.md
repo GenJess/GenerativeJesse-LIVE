@@ -1,5 +1,14 @@
 # Website Dev Log
 
+**Session Date:** 2025-04-25
+
+## Dependency Update for Spotlight Cards
+- Added new UI features: CardSpotlight and CanvasRevealEffect components for the Projects page.
+- These require new dependencies: `@react-three/fiber`, `three`, and `framer-motion`.
+- **Action:** Run `npm install @react-three/fiber three framer-motion` after pulling or merging this feature branch.
+- Context files and project documentation updated for traceability.
+
+
 **Session Date:** 2025-04-24
 
 ## Session Overview
@@ -64,9 +73,17 @@ This session focused on enhancing the visual and functional experience of the po
 
 ---
 
+## Rollback: Cursor Animation Overlay (2025-04-25)
+- **Reason:** Home/landing page was broken after release due to the CanvasCursor animation overlay.
+- **Actions:**
+  - Removed `<CanvasCursor />` import and usage from `src/pages/index.tsx`.
+  - Deleted `src/components/ui/canvas-cursor.tsx`.
+  - Confirmed removal restores intended home page functionality.
+- **Reference:** See project-overview.md and .windsurfrules for rollback/preview policy.
+
 ## Next Steps / Open Questions
 - Monitor the deployment for any issues or feedback.
-- Consider extending the cursor overlay to other pages if desired.
+- Consider extending the cursor overlay to other pages if desired (pending stable implementation).
 - Continue to log key learnings and workflow improvements in this file.
 
 ---
