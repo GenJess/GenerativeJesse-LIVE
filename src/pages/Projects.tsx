@@ -148,16 +148,66 @@ const projectFrames = [
   },
 ];
 
+import { useRef } from 'react'; // Import useRef
 import { NavBarDemo } from "@/components/code.demo";
+import { SplineScene } from "@/components/ui/splite"; // Import SplineScene
 
 export default function Projects() {
+  const spline = useRef(); // Ref for Spline application instance
+
+  // Function to handle Spline scene load
+  function onSplineLoad(splineApp: any) {
+    spline.current = splineApp;
+    // You can add event listeners here if needed, e.g., for object clicks
+    // splineApp.addEventListener('mouseDown', onSplineMouseDown);
+  }
+
+  // Function to handle Spline object click (example)
+  function onSplineMouseDown(e: any) {
+    if (e.target.name === 'YourRobotObjectName') { // Replace with the actual name of your clickable Spline object
+      console.log('Spline object clicked!');
+      // The Eleven Labs widget will handle the conversation
+      // You might need to interact with the widget's API here if it provides one
+      // to trigger the conversation or get its state for Spline synchronization.
+    }
+  }
+
   return (
     <>
       <NavBarDemo />
-      <div className="min-h-screen w-full bg-zinc-900 text-white pt-20 pb-10 flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-8">Projects</h1>
-        {/* TODO: Add tiles or fallback content here if needed */}
-        <div className="text-neutral-300">Project showcase coming soon.</div>
+      {/* Spline scene fills viewport with zoom and hidden overflow */}
+      <div
+        style={{
+          width: '100vw',
+          height: '100vh',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+        className="bg-black" // Add a background color in case Spline fails
+      >
+        {/* Zoomed-in container to push watermark outside of view */}
+        <div style={{
+          transform: 'scale(1.2) translateY(-60px)',
+          transformOrigin: 'center top',
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+        }}>
+          {/* Spline Component */}
+          <SplineScene
+            scene="https://prod.spline.design/szQ-6HaVTX6qOcXB/scene.splinecode"
+            className="absolute inset-0 w-full h-full" // Position absolutely and cover the container
+            onLoad={onSplineLoad} // Attach onLoad event listener
+            onSplineMouseDown={onSplineMouseDown} // Attach onSplineMouseDown event listener
+          />
+        </div>
+        {/* Eleven Labs Conversational AI Widget */}
+        <elevenlabs-convai agent-id="NxXtmZAjquCq17lMPv5F"></elevenlabs-convai>
+        {/* The script tag for the widget will be added in index.html or a higher-level component */}
+        {/* Captions will likely be handled by the widget itself or its API */}
+        {/* You can add other content here if needed, positioned above the Spline scene with a higher z-index */}
       </div>
     </>
   );

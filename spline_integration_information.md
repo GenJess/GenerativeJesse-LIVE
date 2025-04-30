@@ -22,6 +22,31 @@ The scroll functionality is not working as expected on the current implementatio
 
 ---
 
+## Scraped Documentation: Spline Events and React Integration
+
+Based on the Spline documentation and the `@splinetool/react-spline` GitHub repository:
+
+- **Spline Events:** Spline allows defining various events within the editor, such as `Mouse Down`, `Mouse Hover`, `Scroll`, and `State Change`. These events can trigger actions and transitions between states.
+- **`@splinetool/react-spline`:** This React component allows embedding Spline scenes. It provides:
+    - An `onLoad` prop to get access to the Spline `Application` instance.
+    - Methods on the `Application` instance like `findObjectByName`, `findObjectById`, `emitEvent`, and `emitEventReverse` to interact with the Spline scene programmatically from React.
+    - Event listeners as props (e.g., `onSplineMouseDown`, `onSplineScroll`) to listen for Spline events triggered within the scene.
+- **Triggering External Actions:** By using the event listeners provided by `@splinetool/react-spline` (like `onSplineScroll` or potentially a listener for a custom event triggered by a state change in Spline), we can execute JavaScript functions in our React component. This is how we can trigger the Eleven Labs voice agent.
+- **Triggering Spline Events from Outside:** The `emitEvent` method allows triggering Spline events (like animations or state changes) from our React code. This could be useful if we needed to control the Spline animation based on the voice agent's state, although the current plan is to have Spline drive the interaction based on user clicks/scroll.
+
+## Scraped Documentation: Eleven Labs Voice Agent Integration
+
+Based on the Eleven Labs documentation:
+
+- **WebSockets API:** Eleven Labs provides a WebSockets API for real-time Text-to-Speech. This API is designed to generate audio from partial text input, making it suitable for streaming audio and potentially providing text chunks for real-time captions.
+- **Agent WebSockets:** A specific WebSockets API exists for real-time conversations with AI agents. This would be the primary method for interacting with the Eleven Labs voice agent from the frontend.
+- **Streaming Text for Captions:** The nature of the Text-to-Speech WebSockets API, which handles partial text input, suggests that text is processed and potentially available in chunks before or during audio generation. This needs to be confirmed through further investigation of the API details, but it is a strong indicator that streaming text for captions is possible.
+- **Conversational AI Agent "Tools":** Eleven Labs conversational AI agents can be enhanced with "Tools" that allow interaction with external systems and custom logic execution. This could potentially be used to trigger actions in our frontend or receive information via webhooks during a conversation.
+- **Post-call Webhooks:** Eleven Labs supports post-call webhooks to send conversation data after a call is completed. While useful for logging or analysis, this is not suitable for real-time synchronization with the Spline animation.
+- **Widget:** Specific documentation on a dedicated Eleven Labs voice agent "widget" was not prominently found in the search results. It is likely that the primary integration method for real-time conversational agents on a website is through the WebSockets API.
+
+---
+
 ## Scraped Documentation: Scroll Event
 
 The Scroll Event requires the user to scroll in order to go through the transitions added inside.
@@ -172,9 +197,7 @@ Code
 | [LICENSE](https://github.com/splinetool/react-spline/blob/main/LICENSE "LICENSE") | [LICENSE](https://github.com/splinetool/react-spline/blob/main/LICENSE "LICENSE") | [📃 Add LICENSE (](https://github.com/splinetool/react-spline/commit/b5b3882d27091010faf8e5dcf743c2eb04b986ab "📃 Add LICENSE (#47)") [#47](https://github.com/splinetool/react-spline/pull/47) [)](https://github.com/splinetool/react-spline/commit/b5b3882d27091010faf8e5dcf743c2eb04b986ab "📃 Add LICENSE (#47)") | Jun 8, 2022 |
 | [README.md](https://github.com/splinetool/react-spline/blob/main/README.md "README.md") | [README.md](https://github.com/splinetool/react-spline/blob/main/README.md "README.md") | [Allow usage of onXXX native events (](https://github.com/splinetool/react-spline/commit/ff77f563185559e52763916c6b712a2d3962b5e3 "Allow usage of onXXX native events (#192)") [#192](https://github.com/splinetool/react-spline/pull/192) [)](https://github.com/splinetool/react-spline/commit/ff77f563185559e52763916c6b712a2d3962b5e3 "Allow usage of onXXX native events (#192)") | Jun 20, 2024 |
 | [package.json](https://github.com/splinetool/react-spline/blob/main/package.json "package.json") | [package.json](https://github.com/splinetool/react-spline/blob/main/package.json "package.json") | [4.0.0](https://github.com/splinetool/react-spline/commit/19abc8d02aa9100de7927a26bb82eb3441a02b5c "4.0.0") | Jun 20, 2024 |
-| [rollup-plugin-rename-node-modules.d.ts](https://github.com/splinetool/react-spline/blob/main/rollup-plugin-rename-node-modules.d.ts "rollup-plugin-rename-node-modules.d.ts") | [rollup-plugin-rename-node-modules.d.ts](https://github.com/splinetool/react-spline/blob/main/rollup-plugin-rename-node-modules.d.ts "rollup-plugin-rename-node-modules.d.ts") | [Next.js placeholder (](https://github.com/splinetool/react-spline/commit/562f0641ef3a8bb97aea755eb37045079a398a71 "Next.js placeholder (#187)  * feat: (wip) next preview  * fix: update for next server rendering  * Configure build for Next.js  * Exclude react correctly  * Write docs  * fix: handle thumbhash and add size params  * fix: get from backend  * fix: json  * update readme with new API  * Force cache on prod  * Don't display canvas on SSR  * Revert \"Don't display canvas on SSR\"  This reverts commit 44bdb0df3adb9b7cc132dab8adee7ffe85b2ee66.  * Don't display canvas on SSR again  * fix: container  * Revert \"fix: container\"  This reverts commit 615f9fb7c2f3485974f9ec55239a87cd4e06a397.  * Let's try again..  * fix: render image inside Spline client component  * overflow-hidden  * Wording  ---------  Co-authored-by: Guillaume Gouessan <guillaume.gouessan@gmail.com>") [#187](https://github.com/splinetool/react-spline/pull/187) [)](https://github.com/splinetool/react-spline/commit/562f0641ef3a8bb97aea755eb37045079a398a71 "Next.js placeholder (#187)  * feat: (wip) next preview  * fix: update for next server rendering  * Configure build for Next.js  * Exclude react correctly  * Write docs  * fix: handle thumbhash and add size params  * fix: get from backend  * fix: json  * update readme with new API  * Force cache on prod  * Don't display canvas on SSR  * Revert \"Don't display canvas on SSR\"  This reverts commit 44bdb0df3adb9b7cc132dab8adee7ffe85b2ee66.  * Don't display canvas on SSR again  * fix: container  * Revert \"fix: container\"  This reverts commit 615f9fb7c2f3485974f9ec55239a87cd4e06a397.  * Let's try again..  * fix: render image inside Spline client component  * overflow-hidden  * Wording  ---------  Co-authored-by: Guillaume Gouessan <guillaume.gouessan@gmail.com>") | Jun 4, 2024 |
-| [tsconfig.json](https://github.com/splinetool/react-spline/blob/main/tsconfig.json "tsconfig.json") | [tsconfig.json](https://github.com/splinetool/react-spline/blob/main/tsconfig.json "tsconfig.json") | [🔨 Fix typescript compilation](https://github.com/splinetool/react-spline/commit/45bf59a8e118c6119c6aeb424e9785c6a913c68d "🔨 Fix typescript compilation") | Apr 26, 2022 |
-| [tsconfig.node.json](https://github.com/splinetool/react-spline/blob/main/tsconfig.node.json "tsconfig.node.json") | [tsconfig.node.json](https://github.com/splinetool/react-spline/blob/main/tsconfig.node.json "tsconfig.node.json") | [Next.js placeholder (](https://github.com/splinetool/react-spline/commit/562f0641ef3a8bb97aea755eb37045079a398a71 "Next.js placeholder (#187)  * feat: (wip) next preview  * fix: update for next server rendering  * Configure build for Next.js  * Exclude react correctly  * Write docs  * fix: handle thumbhash and add size params  * fix: get from backend  * fix: json  * update readme with new API  * Force cache on prod  * Don't display canvas on SSR  * Revert \"Don't display canvas on SSR\"  This reverts commit 44bdb0df3adb9b7cc132dab8adee7ffe85b2ee66.  * Don't display canvas on SSR again  * fix: container  * Revert \"fix: container\"  This reverts commit 615f9fb7c2f3485974f9ec55239a87cd4e06a397.  * Let's try again..  * fix: render image inside Spline client component  * overflow-hidden  * Wording  ---------  Co-authored-by: Guillaume Gouessan <guillaume.gouessan@gmail.com>") [#187](https://github.com/splinetool/react-spline/pull/187) [)](https://github.com/splinetool/react-spline/commit/562f0641ef3a8bb97aea755eb37045079a398a71 "Next.js placeholder (#187)  * feat: (wip) next preview  * fix: update for next server rendering  * Configure build for Next.js  * Exclude react correctly  * Write docs  * fix: handle thumbhash and add size params  * fix: get from backend  * fix: json  * update readme with new API  * Force cache on prod  * Don't display canvas on SSR  * Revert \"Don't display canvas on SSR\"  This reverts commit 44bdb0df3adb9b7cc132dab8adee7ffe85b2ee66.  * Don't display canvas on SSR again  * fix: container  * Revert \"fix: container\"  This reverts commit 615f9fb7c2f3485974f9ec55239a87cd4e06a397.  * Let's try again..  * fix: render image inside Spline client component  * overflow-hidden  * Wording  ---------  Co-authored-by: Guillaume Gouessan <guillaume.gouessan@gmail.com>") | Jun 4, 2024 |
+| [rollup-plugin-rename-node-modules.d.ts](https://github.com/splinetool/react-spline/blob/main/rollup-plugin-rename-node-modules.d.ts "rollup-plugin-rename-node-modules.d.ts") | [rollup-plugin-rename-node-modules.d.ts](https://github.com/splinetool/react-spline/blob/main/rollup-plugin-rename-node-modules.d.ts "rollup-plugin-rename-node-modules.d.ts") | [Next.js placeholder (](https://github.com/splinetool/react-spline/commit/562f0641ef3a8bb97aea755eb37045079a398a71 "Next.js placeholder (#187)  * feat: (wip) next preview  * fix: update for next server rendering  * Configure build for Next.js  * Exclude react correctly  * Write docs  * fix: handle thumbhash and add size params  * fix: json  * update readme with new API  * Force cache on prod  * Don't display canvas on SSR  * Revert \"Don't display canvas on SSR\"  This reverts commit 44bdb0df3adb9b7cc132dab8adee7ffe85b2ee66.  * Don't display canvas on SSR again  * fix: container  * Revert \"fix: container\"  This reverts commit 615f9fb7c2f3485974f9ec55239a87cd4e06a397.  * Let's try again..  * fix: render image inside Spline client component  * overflow-hidden  * Wording  ---------  Co-authored-by: Guillaume Gouessan <guillaume.gouessan@gmail.com>") [#187](https://github.com/splinetool/react-spline/pull/187) [)](https://github.com/splinetool/react-spline/commit/562f0641ef3a8bb97aea755eb37045079a398a71 "Next.js placeholder (#187)  * feat: (wip) next preview  * fix: update for next server rendering  * Configure build for Next.js  * Exclude react correctly  * Write docs  * fix: handle thumbhash and add size params  * fix: json  * update readme with new API  * Force cache on prod  * Don't display canvas on SSR  * Revert \"Don't display canvas on SSR\"  This reverts commit 44bdb0df3adb9b7cc132dab8adee7ffe85b2ee66.  * Don't display canvas on SSR again  * fix: container  * Revert \"fix: container\"  This reverts commit 615f9fb7c2f3485974f9ec55239a87cd4e06a397.  * Let's try again..  * fix: render image inside Spline client component  * overflow-hidden  * Wording  ---------  Co-authored-by: Guillaume Gouessan <guillaume.gouessan@gmail.com>") [#187](https://github.com/splinetool/react-spline/pull/187) [)](https://github.com/splinetool/react-spline/commit/562f0641ef3a8bb97aea755eb37045079a398a71 "Next.js placeholder (#187)  * feat: (wip) next preview  * fix: update for next server rendering  * Configure build for Next.js  * Exclude react correctly  * Write docs  * fix: handle thumbhash and add size params  * fix: json  * update readme with new API  * Force cache on prod  * Don't display canvas on SSR  * Revert \"Don't display canvas on SSR\"  This reverts commit 44bdb0df3adb9b7cc132dab8adee7ffe85b2ee66.  * Don't display canvas on SSR again  * fix: container  * Revert \"fix: container\"  This reverts commit 615f9fb7c2f3485974f9ec55239a87cd4e06a397.  * Let's try again..  * fix: render image inside Spline client component  * overflow-hidden  * Wording  ---------  Co-authored-by: Guillaume Gouessan <guillaume.gouessan@gmail.com>") | Jun 4, 2024 |
 | [vite.config.ts](https://github.com/splinetool/react-spline/blob/main/vite.config.ts "vite.config.ts") | [vite.config.ts](https://github.com/splinetool/react-spline/blob/main/vite.config.ts "vite.config.ts") | [Make deps external](https://github.com/splinetool/react-spline/commit/1f733d6baa5cfb4459625efd7e99e1ddba6656e5 "Make deps external") | Jun 4, 2024 |
 | [yarn.lock](https://github.com/splinetool/react-spline/blob/main/yarn.lock "yarn.lock") | [yarn.lock](https://github.com/splinetool/react-spline/blob/main/yarn.lock "yarn.lock") | [Update yarn](https://github.com/splinetool/react-spline/commit/b905fa6a432310d617a0b85d302ca920049e648b "Update yarn") | Jun 19, 2024 |
 | View all files |
@@ -295,334 +318,4 @@ export default function App() {
   function onLoad(spline) {
     const obj = spline.findObjectByName('Cube');
     // or
-    // const obj = spline.findObjectById('8E8C2DDD-18B6-4C54-861D-7ED2519DE20E');
-
-    // save it in a ref for later use
-    cube.current = obj;
-  }
-
-  function moveObj() {
-    console.log(cube.current); // Spline Object => { name: 'Cube', id: '8E8C2DDD-18B6-4C54-861D-7ED2519DE20E', position: {}, ... }
-
-    // move the object in 3D space
-    cube.current.position.x += 10;
-  }
-
-  return (
-    <div>
-      <Spline
-        scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
-        onLoad={onLoad}
-      />
-      <button type="button" onClick={moveObj}>
-        Move Cube
-      </button>
-    </div>
-  );
-}
-```
-
-### Listen to Spline Events
-
-[Permalink: Listen to Spline Events](https://github.com/splinetool/react-spline#listen-to-spline-events)
-
-You can listen to any Spline Event you set in the Events panel of the editor by attaching a listener to the Spline component.
-
-```
-import Spline from '@splinetool/react-spline';
-
-export default function App() {
-  function onSplineMouseDown(e) {
-    if (e.target.name === 'Cube') {
-      console.log('I have been clicked!');
-    }
-  }
-
-  return (
-    <div>
-      <Spline
-        scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
-        onSplineMouseDown={onSplineMouseDown}
-      />
-    </div>
-  );
-}
-```
-
-You can find a list of all of the Spline Event listeners in the [Spline Component Props](https://github.com/splinetool/react-spline#spline-component-props) section.
-
-### Trigger Spline events from outside
-
-[Permalink: Trigger Spline events from outside](https://github.com/splinetool/react-spline#trigger-spline-events-from-outside)
-
-You can trigger any animation Event you set in the Events panel in the Spline Editor.
-
-You can use the `emitEvent` function via the spline ref, passing the [event type](https://github.com/splinetool/react-spline#spline-events) and the ID of your object.
-
-_(You can get the ID of the object in the `Develop` pane of the right sidebar)._
-
-```
-import { useRef } from 'react';
-import Spline from '@splinetool/react-spline';
-
-export default function App() {
-  const spline = useRef();
-
-  function onLoad(splineApp) {
-    // save the app in a ref for later use
-    spline.current = splineApp;
-  }
-
-  function triggerAnimation() {
-    spline.current.emitEvent('mouseHover', 'Cube');
-  }
-
-  return (
-    <div>
-      <Spline
-        scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
-        onLoad={onLoad}
-      />
-      <button type="button" onClick={triggerAnimation}>
-        Trigger Spline Animation
-      </button>
-    </div>
-  );
-  }
-```
-
-Or you can query the spline object first, and then trigger the event:
-
-```
-import { useRef } from 'react';
-import Spline from '@splinetool/react-spline';
-
-export default function App() {
-  const objectToAnimate = useRef();
-
-  function onLoad(spline) {
-    const obj = spline.findObjectByName('Cube');
-    // save the object in a ref for later use
-    objectToAnimate.current = obj;
-  }
-
-  function triggerAnimation() {
-    objectToAnimate.current.emitEvent('mouseHover');
-  }
-
-  return (
-    <div>
-      <Spline
-        scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
-        onLoad={onLoad}
-      />
-      <button type="button" onClick={triggerAnimation}>
-        Trigger Spline Animation
-      </button>
-    </div>
-  );
-}
-```
-
-You can find a list of all of the Spline Events you can pass to the `emitEvent` function in the [Spline Events](https://github.com/splinetool/react-spline#spline-events) section.
-
-### Lazy loading
-
-[Permalink: Lazy loading](https://github.com/splinetool/react-spline#lazy-loading)
-
-To start loading react-spline after the whole website has finished loading, we can use lazy-loading. This technique can be achieved using [`React.lazy()`](https://it.reactjs.org/docs/code-splitting.html#reactlazy) in combination with dynamic imports:
-
-```
-import React, { Suspense } from 'react';
-
-const Spline = React.lazy(() => import('@splinetool/react-spline'));
-
-export default function App() {
-  return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" />
-      </Suspense>
-    </div>
-  );
-}
-```
-
-More info in the [relative React documentation](https://it.reactjs.org/docs/code-splitting.html).
-
-## API
-
-[Permalink: API](https://github.com/splinetool/react-spline#api)
-
-### Spline Component Props
-
-[Permalink: Spline Component Props](https://github.com/splinetool/react-spline#spline-component-props)
-
-These are all the props you can pass to the `<Spline />` component.
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `scene` | `string` | Scene file |
-| `onLoad?` | `(spline: Application) => void` | Gets called once the scene has loaded. The `spline` parameter is an instance of the [Spline Application](https://github.com/splinetool/react-spline#spline-app-methods) |
-| `renderOnDemand?` | `boolean` | Wether or not to enable [on demand rendering](https://threejs.org/manual/#en/rendering-on-demand). Default `true`. |
-| `className?` | `string` | CSS classes |
-| `style?` | `object` | CSS style |
-| `id?` | `string` | Canvas id |
-| `ref?` | `React.Ref<HTMLDivElement>` | A ref pointing to div container element. |
-| `onSplineMouseDown?` | `(e: SplineEvent) => void` | Gets called once a Spline `Mouse Down` event is fired |
-| `onSplineMouseHover?` | `(e: SplineEvent) => void` | Gets called once a Spline `Mouse Hover` event is fired |
-| `onSplineMouseUp?` | `(e: SplineEvent) => void` | Gets called once a Spline `Mouse Up` event is fired |
-| `onSplineKeyDown?` | `(e: SplineEvent) => void` | Gets called once a Spline `Key Down` event is fired |
-| `onSplineKeyUp?` | `(e: SplineEvent) => void` | Gets called once a Spline `Key Up` event is fired |
-| `onSplineStart?` | `(e: SplineEvent) => void` | Gets called once a Spline `Start` event is fired |
-| `onSplineLookAt?` | `(e: SplineEvent) => void` | Gets called once a Spline `Mouse Up` event is fired |
-| `onSplineFollow?` | `(e: SplineEvent) => void` | Gets called once a Spline `Mouse Up` event is fired |
-| `onSplineScroll?` | `(e: SplineEvent) => void` | Gets called once a Spline `Scroll` event is fired |
-
-### Spline App Methods
-
-[Permalink: Spline App Methods](https://github.com/splinetool/react-spline#spline-app-methods)
-
-The object exposed as a first argument of the `onLoad` function, is a Spline Application. You can call all these different methods on it.
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `emitEvent` | `(eventName: SplineEventName, nameOrUuid: string) => void` | Triggers a Spline event associated to an object with provided name or uuid. |
-| `emitEventReverse` | `(eventName: SplineEventName, nameOrUuid: string) => void` | Triggers a Spline event associated to an object with provided uuid in reverse order. Starts from last state to first state. |
-| `findObjectById` | `(uuid: string) => SPEObject` | Searches through scene's children and returns the object with that uuid. |
-| `findObjectByName` | `(name: string) => SPEObject` | Searches through scene's children and returns the first object with that name. |
-| `setZoom` | `(zoom: number) => void` | Sets the initial zoom of the scene. |
-
-### Spline Events
-
-[Permalink: Spline Events](https://github.com/splinetool/react-spline#spline-events)
-
-These are all the Spline event types that you can pass to the `emitEvent` or `emitEventReverse` function.
-
-| Name | Description |
-| --- | --- |
-| `mouseDown` | Refers to the Spline `Mouse Down` event type |
-| `mouseHover` | Refers to the Spline `Mouse Hover` event type |
-| `mouseUp` | Refers to the Spline `Mouse Up` event type |
-| `keyDown` | Refers to the Spline `Key Down` event type |
-| `keyUp` | Refers to the Spline `Key Up` event type |
-| `start` | Refers to the Spline `Start` event type |
-| `lookAt` | Refers to the Spline `Look At` event type |
-| `follow` | Refers to the Spline `Mouse Up` event type |
-
-## Contributing
-
-[Permalink: Contributing](https://github.com/splinetool/react-spline#contributing)
-
-We use [yarn](https://yarnpkg.com/), install the dependencies like this:
-
-```
-yarn
-```
-
-### Development
-
-[Permalink: Development](https://github.com/splinetool/react-spline#development)
-
-Serve the `example` folder at localhost:3000
-
-```
-yarn dev
-```
-
-### Build Library
-
-[Permalink: Build Library](https://github.com/splinetool/react-spline#build-library)
-
-```
-yarn build
-```
-
-### Publish on npm
-
-[Permalink: Publish on npm](https://github.com/splinetool/react-spline#publish-on-npm)
-
-```
-yarn publish
-```
-
-## About
-
-React component for Spline scenes.
-
-
-### Topics
-
-[react](https://github.com/topics/react "Topic: react")
-
-### Resources
-
-[Readme](https://github.com/splinetool/react-spline#readme-ov-file)
-
-### License
-
-[MIT license](https://github.com/splinetool/react-spline#MIT-1-ov-file)
-
-[Activity](https://github.com/splinetool/react-spline/activity)
-
-[Custom properties](https://github.com/splinetool/react-spline/custom-properties)
-
-### Stars
-
-[**1.3k**\\
-stars](https://github.com/splinetool/react-spline/stargazers)
-
-### Watchers
-
-[**16**\\
-watching](https://github.com/splinetool/react-spline/watchers)
-
-### Forks
-
-[**67**\\
-forks](https://github.com/splinetool/react-spline/forks)
-
-[Report repository](https://github.com/contact/report-content?content_url=https%3A%2F%2Fgithub.com%2Fsplinetool%2Freact-spline&report=splinetool+%28user%29)
-
-## [Releases\  8](https://github.com/splinetool/react-spline/releases)
-
-[v4.0.0\\
-Latest\\
-\\
-Jun 20, 2024](https://github.com/splinetool/react-spline/releases/tag/v4.0.0)
-
-[\+ 7 releases](https://github.com/splinetool/react-spline/releases)
-
-## [Packages\  0](https://github.com/orgs/splinetool/packages?repo_name=react-spline)
-
-No packages published
-
-## [Used by 15.8k](https://github.com/splinetool/react-spline/network/dependents)
-
-[- ![@nufaill](https://avatars.githubusercontent.com/u/177338157?s=64&v=4)\\
-- ![@kavisudar](https://avatars.githubusercontent.com/u/145850612?s=64&v=4)\\
-- ![@Ashujais](https://avatars.githubusercontent.com/u/120046706?s=64&v=4)\\
-- ![@SRD1510](https://avatars.githubusercontent.com/u/146012727?s=64&v=4)\\
-- ![@offbeatraj](https://avatars.githubusercontent.com/u/159812038?s=64&v=4)\\
-- ![@Mohamad432123](https://avatars.githubusercontent.com/u/166270766?s=64&v=4)\\
-- ![@jiyih](https://avatars.githubusercontent.com/u/164936010?s=64&v=4)\\
-- ![@Khushbu-github](https://avatars.githubusercontent.com/u/179250532?s=64&v=4)\\
-\\
-\+ 15,820](https://github.com/splinetool/react-spline/network/dependents)
-
-## [Contributors\  6](https://github.com/splinetool/react-spline/graphs/contributors)
-
-- [![@marcofugaro](https://avatars.githubusercontent.com/u/7217420?s=64&v=4)](https://github.com/marcofugaro)
-- [![@claudiabdm](https://avatars.githubusercontent.com/u/44007726?s=64&v=4)](https://github.com/claudiabdm)
-- [![@superguigui](https://avatars.githubusercontent.com/u/400119?s=64&v=4)](https://github.com/superguigui)
-- [![@dependabot[bot]](https://avatars.githubusercontent.com/in/29110?s=64&v=4)](https://github.com/apps/dependabot)
-- [![@futurGH](https://avatars.githubusercontent.com/u/80354781?s=64&v=4)](https://github.com/futurGH)
-- [![@rickturner2001](https://avatars.githubusercontent.com/u/93800987?s=64&v=4)](https://github.com/rickturner2001)
-
-## Languages
-
-- [TypeScript97.5%](https://github.com/splinetool/react-spline/search?l=typescript)
-- [HTML1.6%](https://github.com/splinetool/react-spline/search?l=html)
-- [CSS0.9%](https://github.com/splinetool/react-spline/search?l=css)
-
-You can’t perform that action at this time.
+    // const

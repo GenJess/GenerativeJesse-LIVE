@@ -20,7 +20,11 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={
+            <div style={{ height: '100vh', overflowY: 'scroll', minHeight: '400vh' }}>
+              <Index />
+            </div>
+          } />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
