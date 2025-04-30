@@ -1,32 +1,82 @@
-# Personal Portfolio
+# GenerativeJesse.com
 
-A modern, visually-rich web portfolio featuring a 3D landing page, interactive navigation, and a crypto dashboard. Built with Vite, React, TypeScript, shadcn-ui, and Tailwind CSS.
+**Last Updated:** April 30, 2025
 
 ---
 
-## 📂 Folder Structure
+## 🚀 Website Flow & Structure
+
+```
+Ocean Intro (Landing)
+   |
+   v
+Home
+   |
+   v
+About
+   |
+   v
+Projects
+```
+
+- **Ocean Intro (`/`)**: 3D Spline scene (Ocean). User scrolls to bottom, Spline event triggers instant transition to Home.
+- **Home (`/home`)**: Robot Man Spline, perfectly aligned for seamless transition from Ocean Intro.
+- **About (`/about`)**: Info, bio, and background.
+- **Projects (`/projects`)**: Portfolio of work.
+
+---
+
+## 🌊 Spline-Driven Experience
+- **Landing page:** Only the Ocean Spline is rendered. All logic for scroll/transition is handled inside Spline (no overlays, no extra JS).
+- **Seamless transition:** Robot Man's position in the Ocean Spline matches `/home` for a cinematic effect.
+- **No legacy overlays, no cursor trails, no Lovable content.**
+
+---
+
+## 📸 Screenshots
+
+| Ocean Intro (Landing) | Home (Robot Man) |
+|----------------------|------------------|
+| ![Landing](./screenshots/landing-page.png) | _[Add Home screenshot]_ |
+
+---
+
+## 🗂️ Project Structure
 
 ```
 ├── public/
 │   ├── favicon.ico
-│   ├── og-image.png        # Landing page screenshot (see below)
+│   ├── og-image.png
 │   └── placeholder.svg
+├── screenshots/
+│   ├── landing-page.png
 ├── src/
-│   ├── App.tsx             # Main React app entry
-│   ├── main.tsx            # Vite entry point
-│   ├── index.css           # Global styles
-│   ├── components/         # UI & custom components (NavBar, SplineScene, etc)
-│   ├── pages/              # Page-level components (index.tsx, About.tsx, etc)
-│   ├── hooks/              # Custom React hooks
-│   ├── lib/                # Utility libraries
-│   └── context/            # React context providers
-├── package.json            # Project dependencies & scripts
-├── tailwind.config.ts      # Tailwind CSS configuration
-├── vite.config.ts          # Vite config
+│   ├── pages/
+│   │   ├── index.tsx      # Ocean Intro (landing)
+│   │   ├── Home.tsx      # Robot Man (home)
+│   │   ├── About.tsx     # About
+│   │   └── Projects.tsx  # Projects
+│   ├── components/       # UI & Spline wrappers
+│   ├── ...
+├── package.json
+├── tailwind.config.ts
+├── vite.config.ts
 └── README.md
 ```
 
 ---
+
+## 🛠️ Built With
+- Vite
+- React
+- TypeScript
+- shadcn/ui
+- Tailwind CSS
+
+---
+
+**Production site:** [generativejesse.com](https://generativejesse.com)
+
 # Personal Portfolio
 
 A modern, visually-rich web portfolio featuring a 3D landing page, interactive navigation, and a crypto dashboard. Built with Vite, React, TypeScript, shadcn-ui, and Tailwind CSS.
