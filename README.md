@@ -4,60 +4,56 @@
 
 ---
 
-## 🚀 Website Flow & Structure
+## 🚀 Live Site Flow
 
 ```
-Ocean Intro (Landing)
+Ocean Intro Spline (Landing)
    |
    v
-Home
+[Scroll to bottom triggers redirect]
    |
    v
-About
+Home (/home)
    |
    v
-Projects
+About (/about)
+   |
+   v
+Projects (/projects)
 ```
-
-- **Ocean Intro (`/`)**: 3D Spline scene (Ocean). User scrolls to bottom, Spline event triggers instant transition to Home.
-- **Home (`/home`)**: Robot Man Spline, perfectly aligned for seamless transition from Ocean Intro.
-- **About (`/about`)**: Info, bio, and background.
-- **Projects (`/projects`)**: Portfolio of work.
 
 ---
 
-## 🌊 Spline-Driven Experience
-- **Landing page:** Only the Ocean Spline is rendered. All logic for scroll/transition is handled inside Spline (no overlays, no extra JS).
-- **Seamless transition:** Robot Man's position in the Ocean Spline matches `/home` for a cinematic effect.
-- **No legacy overlays, no cursor trails, no Lovable content.**
+## 🌊 Ocean Intro Spline Landing
+- The landing page (`/`) displays the Ocean Spline in a fullscreen, interactive viewport.
+- All scroll/cursor/redirect logic is handled inside Spline (no overlays, no hacks).
+- When the user scrolls to the bottom, Spline triggers a redirect to `/home`.
+- The Spline is perfectly scaled, no zoom/crop, and fully interactive.
 
 ---
 
-## 📸 Screenshots
-
-| Ocean Intro (Landing) | Home (Robot Man) |
-|----------------------|------------------|
-| ![Landing](./screenshots/landing-page.png) | _[Add Home screenshot]_ |
+## 🏗️ Recent Major Changes
+- **Ocean Intro Spline:** Simplified landing page code for perfect Spline scaling and interaction. No more scroll/zoom bugs.
+- **Nav Bar:** "Home" now links to `/home` (not `/`). No nav button for the Ocean Intro.
+- **Creations:** Restored file-finder UI.
+- **Projects:** Fixed rendering issues—projects now display as intended.
+- **README:** Updated for clarity and accuracy.
 
 ---
 
-## 🗂️ Project Structure
-
+## 🗂️ Project Structure (Key Files)
 ```
-├── public/
-│   ├── favicon.ico
-│   ├── og-image.png
-│   └── placeholder.svg
-├── screenshots/
-│   ├── landing-page.png
 ├── src/
 │   ├── pages/
-│   │   ├── index.tsx      # Ocean Intro (landing)
-│   │   ├── Home.tsx      # Robot Man (home)
+│   │   ├── index.tsx      # Ocean Intro Spline landing
+│   │   ├── Home.tsx      # Home (main site)
 │   │   ├── About.tsx     # About
-│   │   └── Projects.tsx  # Projects
-│   ├── components/       # UI & Spline wrappers
-│   ├── ...
+│   │   ├── Projects.tsx  # Projects
+│   │   └── Creations.tsx # Creations (file-finder look)
+│   ├── components/       # NavBar, Spline wrappers, UI
+│   └── ...
+├── public/
+├── screenshots/
 ├── package.json
 ├── tailwind.config.ts
 ├── vite.config.ts
