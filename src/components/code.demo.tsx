@@ -35,13 +35,6 @@ export function SplineSceneBasic() {
         className="absolute inset-0 w-full h-full z-10"
       />
       
-      {/* Cursor trails */}
-      <canvas
-        id="canvas"
-        className="absolute inset-0 pointer-events-none z-20"
-      />
-
-
     </Card>
   );
 }
