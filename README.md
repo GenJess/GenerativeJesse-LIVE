@@ -32,12 +32,7 @@ Projects (/projects)
 
 ---
 
-## 🏗️ Recent Major Changes
-- **Ocean Intro Spline:** Simplified landing page code for perfect Spline scaling and interaction. No more scroll/zoom bugs.
-- **Nav Bar:** "Home" now links to `/home` (not `/`). No nav button for the Ocean Intro.
-- **Creations:** Restored file-finder UI.
-- **Projects:** Fixed rendering issues—projects now display as intended.
-- **README:** Updated for clarity and accuracy.
+
 
 ---
 

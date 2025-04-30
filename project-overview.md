@@ -34,10 +34,7 @@ To create a personal portfolio website showcasing skills, projects, and experien
 
 ## Spline Scene URLs in Use (LIVE):
 
-- **Landing Page (generativejesse.com)**
-  - URL: https://prod.spline.design/wPA3LRYxI9Gxx53V/scene.splinecode
-  - Description: Ocean Intro Spline (scroll-driven, triggers redirect to /home at bottom)
-  - **Status:** LIVE — Lock this Spline for production, do not edit!
+
 
 - **Home Page (/home)**
   - URL: https://prod.spline.design/A6r9GOTlwGdONZl7/scene.splinecode
