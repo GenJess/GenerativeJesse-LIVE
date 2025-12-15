@@ -2,7 +2,7 @@
 
 import { SplineScene } from "@/components/ui/splite";
 import { Card } from "@/components/ui/card";
-import { Home, User, Briefcase, FileText, Clock } from 'lucide-react';
+import { Home, User, Briefcase, FileText, Clock, ListChecks } from 'lucide-react';
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { TextScramble } from "@/components/ui/text-scramble";
 import { useState, useEffect } from "react";
@@ -16,7 +16,8 @@ export function NavBarDemo() {
     { name: 'About', url: '/about', icon: User },
     { name: 'Projects', url: '/projects', icon: Briefcase },
     { name: 'Creations', url: '/creations', icon: FileText },
-    { name: 'History', url: '/history', icon: Clock }
+    { name: 'History', url: '/history', icon: Clock },
+    { name: 'To Do', url: '/todo', icon: ListChecks }
   ]
 
   return <NavBar items={navItems} />;
