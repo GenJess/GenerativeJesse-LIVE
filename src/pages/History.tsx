@@ -1,19 +1,5 @@
-import React from "react";
-import { TimelineDemo } from "@/components/TimelineDemo";
-import { NavBarDemo } from "@/components/code.demo";
-import { PageTransition } from "@/components/ui/page-transition";
+import Landing from "./Landing";
 
-const History = () => {
-  return (
-    <>
-      <NavBarDemo />
-      <PageTransition>
-        <div className="min-h-screen w-full relative">
-          <TimelineDemo />
-        </div>
-      </PageTransition>
-    </>
-  );
-};
+const History = () => <Landing view="career" />;
 
 export default History;
