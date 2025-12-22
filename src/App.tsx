@@ -14,7 +14,6 @@ import Projects from "./pages/Projects";
 import Creations from "./pages/Creations";
 import History from "./pages/History";
 import NotFound from "./pages/NotFound";
-import Todo from "./pages/Todo";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +34,6 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/creations" element={<Creations />} />
           <Route path="/history" element={<History />} />
-          <Route path="/todo" element={<Todo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
