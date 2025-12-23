@@ -488,14 +488,6 @@ const Landing = ({ view = "full" }: LandingProps) => {
             >
               Connect
             </NavLink>
-            <NavLink
-              to="/todo"
-              className={({ isActive }) =>
-                `text-xs ${isActive ? "text-purple-300" : "text-zinc-400"} hover:text-white transition-colors uppercase tracking-widest font-sans`
-              }
-            >
-              To Do
-            </NavLink>
           </div>
 
           <div className="flex items-center gap-6">
