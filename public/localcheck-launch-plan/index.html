@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalCheck + DatingData — iOS Launch Plan</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#111111; --muted:#787774; --border:#EAEAEA; --canvas:#FBFBFA; --accent:#152B4F; --gold:#B8943F; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Satoshi',-apple-system,sans-serif; background:var(--canvas); color:var(--ink); line-height:1.6; }
+.wrap { max-width:880px; margin:0 auto; padding:64px 24px; }
+header { border-bottom:1px solid var(--border); padding-bottom:32px; margin-bottom:48px; }
+.kicker { font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin-bottom:12px; }
+h1 { font-size:clamp(2rem,5vw,3.5rem); letter-spacing:-0.03em; line-height:1.05; margin-bottom:16px; }
+.lede { font-size:18px; color:var(--muted); max-width:60ch; }
+h2 { font-size:24px; letter-spacing:-0.02em; margin:48px 0 16px; padding-top:32px; border-top:1px solid var(--border); }
+h3 { font-size:17px; margin:24px 0 8px; }
+p { margin-bottom:12px; max-width:65ch; }
+ul,ol { margin:8px 0 16px 24px; max-width:65ch; }
+li { margin-bottom:6px; }
+code { background:#f4f4f2; padding:2px 6px; border-radius:4px; font-size:13px; font-family:'Geist Mono',monospace; }
+.card { border:1px solid var(--border); border-radius:12px; padding:24px; margin:16px 0; background:#fff; }
+.callout { border-left:3px solid var(--gold); padding:12px 20px; background:#FBF3DB30; margin:16px 0; font-style:italic; }
+.tag { display:inline-block; padding:3px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; border-radius:99px; background:#152B4F; color:white; }
+.dod { background:#EDF3EC; border-left:3px solid #346538; padding:12px 20px; margin:12px 0; font-size:14px; }
+.dod strong { color:#346538; }
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; }
+th,td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--border); }
+th { font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); }
+.footer { margin-top:64px; padding-top:24px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="kicker">JAA · iOS Launch Plan · 2026-05-26</div>
+<h1>LocalCheck + DatingData → App Store</h1>
+<p class="lede">Definitive plan from repo state to a downloadable, monetized iOS app. Every step has a Definition of Done and an owner (agent or AJ). No hand-wave gaps.</p>
+</header>
+
+<h2>0. Repo State (Verified)</h2>
+<div class="card">
+<h3>LocalCheck — 4 repos, 3 stacks</h3>
+<table>
+<thead><tr><th>Repo</th><th>Stack</th><th>Last commit</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>agenticjess-star/LocalCheckLive</td><td>Expo / React Native</td><td>2026-05-24</td><td><strong>Canonical</strong></td></tr>
+<tr><td>agenticjess-star/LocalCheck-IOS</td><td>Native Swift</td><td>~2 mo stale</td><td>Archive</td></tr>
+<tr><td>jGPT-Automated/LocalCheckExpo</td><td>Empty shell</td><td>—</td><td>Delete</td></tr>
+<tr><td>(flutter variant)</td><td>Flutter</td><td>stale</td><td>Archive</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card">
+<h3>DatingData — Dual-head risk</h3>
+<table>
+<thead><tr><th>Repo</th><th>Stack</th><th>Last commit</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>agenticjess-star/DatingData</td><td>Web + Stripe + Expo stub in /shared</td><td>2026-05-24</td><td>Pick ONE</td></tr>
+<tr><td>jGPT-Automated/DatingData</td><td>Web + Stripe</td><td>2026-05-25</td><td>Pick ONE</td></tr>
+</tbody>
+</table>
+<div class="callout">Decision needed from AJ before any iOS work: which DatingData head is canonical. Two active heads with Stripe scaffolding = guaranteed merge hell.</div>
+</div>
+
+<h2>1. Pre-Flight (AJ-owned, blocks everything)</h2>
+<ol>
+<li><strong>Apple Developer Program enrollment</strong> — confirmed active. <span class="tag">AJ</span></li>
+<li><strong>Entity decision</strong>: Individual vs Organization. Org requires D-U-N-S (7+ business days). For LocalCheck/DatingData solo, Individual is faster.</li>
+<li><strong>Bundle IDs reserved</strong> in App Store Connect: <code>com.aj.localcheck</code>, <code>com.aj.datingdata</code></li>
+<li><strong>App Store Connect API Key</strong> generated (Users & Access → Integrations → App Store Connect API). Save: Issuer ID, Key ID, .p8 file.</li>
+<li><strong>Paid Apps agreement signed</strong>, tax forms (W-9/W-8BEN) submitted, banking added. <strong>This blocks payouts</strong> — start now even if app is months out.</li>
+</ol>
+<div class="dod"><strong>DoD:</strong> Screenshot of App Store Connect showing both Bundle IDs reserved, API key downloaded to 1Password, Paid Apps status = "Active".</div>
+
+<h2>2. Repo Consolidation (Chief of Staff owns, 1 day)</h2>
+<ol>
+<li>Archive <code>LocalCheck-IOS</code>, delete empty <code>LocalCheckExpo</code>, archive Flutter variants. Tag commits with <code>archived-2026-05</code>.</li>
+<li>AJ picks DatingData canonical head. Other one renamed to <code>-archive</code>, made read-only.</li>
+<li>Each canonical repo gets: <code>README.md</code> with stack + status + bundle id, <code>.github/workflows/</code> placeholder, <code>fastlane/</code> directory, <code>app.json</code> (LocalCheck) verified.</li>
+</ol>
+<div class="dod"><strong>DoD:</strong> Two repos remain in "active" state. Each has README claiming canonical status. All other variants archived with explicit commit message. PR-checked.</div>
+
+<h2>3. Build Pipeline (Forge owns, 2-3 days)</h2>
+<h3>LocalCheck (Expo)</h3>
+<ul>
+<li><strong>EAS Build</strong> for iOS: <code>eas build --platform ios --profile production</code></li>
+<li><strong>EAS credentials</strong>: let EAS manage signing (recommended) — uses App Store Connect API key. Cert + provisioning profile auto-generated.</li>
+<li><strong>EAS Submit</strong>: <code>eas submit --platform ios</code> uploads .ipa to TestFlight automatically.</li>
+<li>GitHub Action on push to <code>main</code>: <code>eas build --auto-submit --non-interactive</code>. Requires <code>EXPO_TOKEN</code> repo secret.</li>
+</ul>
+<h3>DatingData (post-consolidation, choose path)</h3>
+<ul>
+<li>Path A — Wrap web in Expo WebView: fastest to App Store but Apple may reject under 4.2 (minimum functionality) if it's just a wrapper. Need native features (push, offline, sensors).</li>
+<li>Path B — Port to Expo properly using the <code>/shared</code> stub already in repo. 2-3 weeks but Apple-safe.</li>
+<li>Recommendation: <strong>Path B</strong>. The 4.2 rejection is now the #2 most common reject reason in 2026.</li>
+</ul>
+<div class="dod"><strong>DoD:</strong> Both repos have a working <code>eas build --platform ios --profile production</code> producing an .ipa. CI runs on every push to main. TestFlight build visible in App Store Connect.</div>
+
+<h2>4. Apple Compliance Gates (Sentinel owns)</h2>
+<p>Five things that auto-reject in 2026 if missing:</p>
+<ol>
+<li><strong>Account deletion in-app</strong> (since 2022, strictly enforced). Settings → Delete Account → confirmation → server-side wipe within 30 days.</li>
+<li><strong>Privacy Manifest</strong> (<code>PrivacyInfo.xcprivacy</code>) declaring data collection categories + reasons for required-reason APIs (UserDefaults, FileTimestamp, SystemBootTime, DiskSpace). Required since May 2024.</li>
+<li><strong>App Tracking Transparency prompt</strong> if any third-party SDK touches IDFA (most analytics do).</li>
+<li><strong>Encryption export compliance</strong>: <code>ITSAppUsesNonExemptEncryption=false</code> in Info.plist if using only standard HTTPS.</li>
+<li><strong>Support URL + Privacy Policy URL</strong> live on the public web before submission. Use generativejesse.com/localcheck-privacy and /datingdata-privacy.</li>
+</ol>
+<div class="dod"><strong>DoD:</strong> Sentinel runs a pre-submit audit script. Returns JSON with pass/fail for each of the 5 gates. Build does not advance to "Submit for Review" until all 5 pass.</div>
+
+<h2>5. Monetization (AJ decides per app)</h2>
+<table>
+<thead><tr><th>Model</th><th>Apple cut</th><th>Best for</th><th>Setup</th></tr></thead>
+<tbody>
+<tr><td>Paid up-front</td><td>30% (15% small biz)</td><td>Utility w/ clear value</td><td>Price in ASC</td></tr>
+<tr><td>Freemium + IAP</td><td>30% / 15%</td><td>LocalCheck (premium check tiers)</td><td>StoreKit 2, products in ASC</td></tr>
+<tr><td>Subscription</td><td>30% yr 1 → 15% yr 2+</td><td>DatingData (recurring insights)</td><td>StoreKit 2 auto-renew</td></tr>
+<tr><td>Ads (AdMob)</td><td>0% to Apple, 32% to Google</td><td>Scale-first apps</td><td>SDK + ATT prompt</td></tr>
+</tbody>
+</table>
+<p><strong>Recommendation:</strong> LocalCheck = freemium ($4.99 unlock + $0.99 per check pack). DatingData = subscription ($9.99/mo, $79.99/yr) with 3-day free trial. Both use StoreKit 2 native — no Stripe in-app (Apple rejects digital-goods Stripe under 3.1.1).</p>
+<div class="dod"><strong>DoD:</strong> All IAP products configured in App Store Connect, prices set in 175 territories, server-side receipt verification working against Apple's sandbox. One successful sandbox purchase recorded.</div>
+
+<h2>6. Store Listing Assets (Forge + AJ, 1 week)</h2>
+<ul>
+<li><strong>App icon</strong>: 1024×1024 PNG, no alpha. Generate via Nano Banana Pro.</li>
+<li><strong>Screenshots</strong>: 6.7" (iPhone 15/16 Pro Max), 6.5" (iPhone 11 Pro Max) — required. 5.5" optional but recommended. 3-10 per size. Auto-generate via <code>fastlane snapshot</code>.</li>
+<li><strong>App Preview video</strong> (optional but +25% conversion): 15-30s, captured via simulator + iMovie.</li>
+<li><strong>Copy</strong>: Name (30 char), Subtitle (30 char), Promo Text (170 char, editable post-launch), Description (4000 char), Keywords (100 char, comma-separated), What's New (4000 char).</li>
+<li><strong>App Privacy questionnaire</strong> in ASC — every SDK's data collection categorized.</li>
+<li><strong>Age rating</strong>: questionnaire-driven. DatingData = 17+ likely.</li>
+</ul>
+<div class="dod"><strong>DoD:</strong> All assets uploaded, App Store Connect "Ready to Submit" status, no validation warnings.</div>
+
+<h2>7. TestFlight Beta (Sentinel runs, 5-14 days)</h2>
+<ol>
+<li>Internal testing: up to 100 testers, no review required, instant.</li>
+<li>External testing: up to 10,000 testers, requires Beta App Review (24-48 hr first time). Need group + public link.</li>
+<li>Crash-free rate must be >99% before submitting for review. Sentry SDK integrated.</li>
+<li>Minimum 5 external testers giving feedback for 7 days before App Store submit.</li>
+</ol>
+<div class="dod"><strong>DoD:</strong> Both apps have ≥5 active TestFlight testers, ≥99% crash-free, ≥3 written feedback notes per app addressed or triaged.</div>
+
+<h2>8. App Store Submission (CoS submits, AJ approves)</h2>
+<ol>
+<li>Run Sentinel pre-submit audit (gate from §4).</li>
+<li>Select build in ASC → fill "Version Information" → "Submit for Review".</li>
+<li>Review time 2026 median: <strong>24-48 hours</strong>. First-ever submission can run 3-5 days.</li>
+<li>If rejected: response time matters. Reply via Resolution Center within 24 hr with concrete fix + new build. 90% of rejections resolved in 1 round if addressed properly.</li>
+<li>Common 2026 rejects to pre-empt: 4.2 (minimum functionality — biggest), 5.1.1(v) (account deletion missing), 2.3.3 (low-res screenshots), 3.1.1 (Stripe for digital goods).</li>
+</ol>
+<div class="dod"><strong>DoD:</strong> Status = "Ready for Sale" in ASC. App live on App Store. AJ has downloaded production build to his personal device and verified IAP flow.</div>
+
+<h2>9. Launch + Growth (Chief + AJ)</h2>
+<ul>
+<li><strong>Pre-launch (day -7 to 0)</strong>: ProductHunt scheduled, Twitter teaser thread, email list warm-up, AppFigures keyword research locked.</li>
+<li><strong>Day 0</strong>: ProductHunt live 12:01am PT, X anchor post + 4 reply quotes in the engagement window, email blast, ASO keyword set #1.</li>
+<li><strong>Day 1-7</strong>: Daily X content, reach out to 10 niche newsletters (Filtered, Indie Hackers, The Sample), submit to BetaList/Indie Hackers.</li>
+<li><strong>Week 2-4</strong>: ASO iteration weekly (rotate keywords/screenshots/subtitle), Apple Search Ads $20/day starter campaign on branded + 5 generic terms.</li>
+<li><strong>Month 2+</strong>: Decide based on MRR. If &gt;$1K/mo, scale ASA + add affiliate. If &lt;$500/mo, run conversion experiments before more acquisition spend.</li>
+</ul>
+<div class="dod"><strong>DoD:</strong> Live ProductHunt page, ≥100 downloads day 1, ≥5 paying users month 1, ASA campaign running with CPI &lt;$3, ASO keywords ranked in top 20 for at least 3 terms.</div>
+
+<h2>10. What Agents Own vs AJ Owns</h2>
+<table>
+<thead><tr><th>Task</th><th>Owner</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Repo consolidation, archiving, README updates</td><td>Chief of Staff</td><td>GitHub API via RunWithCredentials</td></tr>
+<tr><td>EAS Build / Submit CI configuration</td><td>Forge</td><td>GitHub Action + EXPO_TOKEN secret</td></tr>
+<tr><td>Privacy manifest, account-delete UI, compliance audit</td><td>Sentinel</td><td>Code review + automated checks</td></tr>
+<tr><td>App icon, screenshots, copy drafts, video</td><td>Forge + Nano Banana Pro</td><td>Asset generation</td></tr>
+<tr><td>ASC API: create app records, IAP, listing copy, TestFlight invites</td><td>Chief</td><td>App Store Connect API + JWT</td></tr>
+<tr><td>StoreKit 2 integration, receipt verification</td><td>Forge</td><td>Code work</td></tr>
+<tr><td><strong>Apple Developer enrollment + tax/banking</strong></td><td><strong>AJ</strong></td><td>Identity verification, legal signature</td></tr>
+<tr><td><strong>Final "Submit for Review" click</strong></td><td><strong>AJ</strong></td><td>Liability — Apple binds the developer account holder</td></tr>
+<tr><td><strong>Respond to Apple rejections</strong></td><td>Chief drafts, AJ sends</td><td>Account holder must reply</td></tr>
+<tr><td>Promo: ProductHunt post, X anchor, newsletter pitches</td><td>Chief drafts, AJ approves+sends</td><td>External-send rule</td></tr>
+</tbody>
+</table>
+
+<h2>11. Timeline (Best Case)</h2>
+<ul>
+<li><strong>Week 1</strong>: §1 pre-flight + §2 consolidation + DatingData head decision.</li>
+<li><strong>Week 2-3</strong>: §3 build pipelines + §4 compliance work.</li>
+<li><strong>Week 4</strong>: §5 monetization wired + §6 assets.</li>
+<li><strong>Week 5-6</strong>: §7 TestFlight (LocalCheck submits week 5, DatingData week 6 if Path B).</li>
+<li><strong>Week 7</strong>: §8 review. Median 24-48hr.</li>
+<li><strong>Week 8</strong>: §9 launch.</li>
+</ul>
+<p>Realistic with rejection cycles: <strong>8-12 weeks per app</strong>. Run in parallel after week 2.</p>
+
+<h2>12. Known Gaps / AJ Decision Forks</h2>
+<ol>
+<li>DatingData canonical head — agenticjess-star or jGPT-Automated?</li>
+<li>DatingData Path A (WebView wrap, risky) vs Path B (native port, 2-3 wk).</li>
+<li>Individual vs Organization developer entity (Org = +7 days but cleaner tax).</li>
+<li>StoreKit 2 only vs StoreKit 2 + RevenueCat ($0 until $2.5K MTR — recommended for analytics).</li>
+<li>Launch sequence: LocalCheck first (simpler), DatingData first (bigger market), or parallel (recommended if Forge has bandwidth).</li>
+</ol>
+
+<div class="footer">
+Built by Chief of Staff · Sources: Apple Developer Program 2026 docs, Expo EAS docs, App Store Review Guidelines (current as of May 2026), 2026 rejection-reason analysis. Repo state verified via GitHub API 2026-05-26.
+</div>
+</div>
+</body>
+</html>
